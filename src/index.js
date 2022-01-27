@@ -13,7 +13,7 @@ const history = require('./routes/history')
 
 // set default env vars
 const PORT = process.env['PORT'] || 80
-const SESS_SECRET = process.env.GUESSLE_SESS_SECRET || 'mytimestampbringsalltheboystotheyard-' + Date.now()
+const SESS_SECRET = process.env.WURDL_SESS_SECRET || 'HUGSKIDAIDAGIRDRANTLOREABETCOCOMAO' + Date.now()
 
 
 // Express app setup
@@ -60,7 +60,7 @@ app.use(async (req, res, next) => {
 
 // 404 catcher, then error catchall
 app.use((req, res, next) => {
-    next(new AppError('Sorry, but I could not find that page.', 404))
+    next(new AppError('404 Error Not Found!', 404))
 })
 app.use(async (err, req, res, next) => {
     if (!err.status || err.status > 499) {
@@ -81,7 +81,7 @@ app.use(async (err, req, res, next) => {
     res.render('error', {
         page: 'error',
         title: 'Error',
-        errorMessage: (err.status === 500) ? 'Sorry, we ran into a problem.' : err.message
+        errorMessage: (err.status === 500) ? 'Internal server error.' : err.message
     })
 })
 
