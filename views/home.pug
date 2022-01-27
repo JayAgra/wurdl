@@ -3,54 +3,34 @@ extends partials/layout.pug
 block content
 
     article.game-help.info-block
-        h2.sub-header Game Help
+        h2.sub-header How to play Wurdl
         p 
-            | The object of the game is to guess the word. You do this by getting 
-            | clues each time you guess. If you see a letter in 
+            | The object of the game is to guess the final word. Each guess returns
+            | some clues. If you see a letter in 
             span.letter.check-0 gray
-            | , it does not appear in the final solution. If you see a letter in 
+            | , it does not appear in the final word. If you see a letter in 
             span.letter.check-1 yellow
-            | , it appears in the solution, but not where you have have 
+            | , it appears in the solution, but not in the position you 
             | guessed. And if you see a letter in 
             span.letter.check-2 green
-            | , you have that one in the correct position!
+            | , you have the letter correct & in the correct position!
         p 
-            | Once you have all of the letters guessed, you win! You can always 
-            | give up on that word and ask for a new one. And once you win, you 
-            | can ask for a new word. (You will also see a link to the definition 
-            | of the solved word in case you want to learn about it!)
+            | Once you complete the word, you win! If you do,
+            | can try a new word! If you would like another word, you can request one.
 
         p 
-            | You can either use the in-game virtual keyboard to type or you can 
-            | use an actual keyboard. The in-game virtual keyboard also shows 
-            | you letters you have guessed already, and their result.
+            | The in-game keybard shows letters with any results you got before.
 
         p 
             | Words come from the official 
             a(href='https://scrabble.merriam.com/', target='_blank') Scrabble dictionary
-            | . When you guess a word, it must be in the game's dictionary! There are 
-            | currently 9,330 possible 5-letter words.
+            | . When you guess a word, it must be in the game's dictionary!
 
         p 
             strong Note: 
-            | Some words have more than 1 of the same letter (for example, "brood")! 
+            | Some words have more than 1 of the same letter (for example, "green")! 
             | In this case, you may get a green or yellow indicator when you use one 
-            | of those letters, but there may be a duplicate! If you guess a word with 
-            | two letters, you might get one green and one yellow! (A gray letter 
-            em always
-            |  means it does not appear at all in the solution.)
-
-        p 
-            strong
-                | Why did you make this 
-                a(href='https://www.powerlanguage.co.uk/wordle/') Wordle 
-                | clone?
-        p 
-            | That's a fair question. I like the game, but I didn't like only being 
-            | able to play once a day, so I made this. I'm a software engineer by 
-            | trade, and I like to tinker. I also can now add in options that I like!
-            | Curious how this is made? You can see all of the code on 
-            a(href='https://github.com/jakerella/guessle' target='_blank' title='View this code on GitHub') GitHub!
+            | of those letters, but there may be a duplicate!
         
         aside.actions
             input.close-help.button(type='button', value='Close')
@@ -61,25 +41,10 @@ block content
         label(for='dark-mode')
             h3.no-break Dark Mode
             input.dark-mode(type='checkbox', id='dark-mode')
-        
-        h3 Word Size
-        p 
-            | How long should the words be?
-            br
-            | (Note, this takes effect on the 
-            em next
-            |  word!)
-        aside.radio-set
-            label(for='word-length-5')
-                input.word-length(type='radio', name='word-length', id='word-length-5', value='5')
-                | 5-letters
-            label(for='word-length-6')
-                input.word-length(type='radio', name='word-length', id='word-length-6', value='6')
-                | 6-letters
 
         h3 Word Depth
         p 
-            | How "deep" in the word list do you want to pull words from?
+            | How difficult do you want the word to be?
             br
             | (Note, this takes effect on the 
             em next
@@ -97,21 +62,14 @@ block content
         
         h3 Duplicate Letters
         label(for='dupe-letters')
-            | Include Duplicates
+            | Include Duplicate Letters
             input.dupe-letters(type='checkbox', id='dupe-letters')
         p 
-            | This option changes the game's difficulty by including (or excluding) words with duplicate letters (like "elder").
             br
             | (Note, this takes effect on the 
             em next
             |  word!)
         
-        h3 Accessibility
-        label(for='accessible-markers')
-            | Add non-color markers
-            input.accessible-markers(type='checkbox', id='accessible-markers')
-        p 
-            | This option adds more accessible markers to guess letters (non-color based).
         
         aside.actions
             input.close-options.button(type='button', value='Close')
@@ -156,17 +114,17 @@ block content
                 - var suffix = ''
                 if guesses.length > 1
                     - suffix = 'es'
-                | Congratulations! You solved this Guessle in 
+                | Congratulations! You won in
                 strong= guesses.length 
                 = ' guess' + suffix + '!'
                 br
                 br
-                | The word was 
+                | The answer was
                 a(target='_blank', href='https://scrabble.merriam.com/finder/' + solution)= solution
                 | .
 
         p.surrender-info.hidden
-            | You'll get it next time!
+            | Game over! Try again?
             br
             | The word was 
             a.answer(target='_blank', href='https://scrabble.merriam.com/finder/') ???
@@ -174,12 +132,12 @@ block content
         
 
         aside.actions
-            a(href='#', class='give-up button ' + hideGiveup) I give up!
-            a(href='/?new', class='new-word button ' + hideSolution) New Word Please!
+            a(href='#', class='give-up button ' + hideGiveup) Give Up
+            a(href='/?new', class='new-word button ' + hideSolution) New Word
             
         article.stats
             p
-                | You have played 
+                | As of now, you have played 
                 span.play-count 0
                 |  games 
                 br
@@ -189,15 +147,15 @@ block content
                 span.win-percent 0
                 | %)
                 br
-                | with 
+                | with an average of
                 span.guess-avg 0
-                |  guesses on average.
+                |  guesses per puzzle.
             p
-                | You have given up 
+                | You have quit
                 span.quit-count 0
-                |  times (
+                |  games, or 
                 span.quit-percent 0
-                | %).
+                | % of played games.
             
             aside.actions
                 a(href='/history', class='game-history button') Game History
