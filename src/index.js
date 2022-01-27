@@ -36,7 +36,7 @@ app.use(session({
     secret: SESS_SECRET,
     store: new RedisStore({ client: redisSessionClient }),
     resave: false,
-    name: 'guessle',
+    name: 'wurdl',
     saveUninitialized: false
 }))
 
