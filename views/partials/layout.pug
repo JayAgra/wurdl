@@ -4,9 +4,9 @@ html(lang='en-US')
         meta(charset='UTF-8')
         meta(http-equiv='content-type', content='text/html; charset=utf-8')
 
-        title= 'Guessle ' + title
+        title= 'Wurdl ' + title
 
-        meta(name='description', content='A word game based on Wordle')
+        meta(name='description', content='Another blatant ripoff of wordle. This version supports infinite games per day/')
         meta(name='viewport', content='width=device-width, initial-scale=1')
 
         link(rel='stylesheet', href='/main.css')
@@ -18,7 +18,7 @@ html(lang='en-US')
                     li.help
                     li.options
             
-            h1 Guessle
+            h1 Wurdl
 
         main#main-content
             if error
@@ -32,13 +32,9 @@ html(lang='en-US')
 
         footer
             p 
-                | Yes, it's a 
-                a(href='https://www.powerlanguage.co.uk/wordle/') Wordle
-                |  clone.
+                | Play the original (Wordle)
+                a(href='https://www.powerlanguage.co.uk/wordle/') here
             p
-                | &copy; Jordan Kasper 2021 | See this code on 
-                a(href='https://github.com/jakerella/guessle' target='_blank' title='View the Wordle Clone code on GitHub')
-                    | GitHub
-            p 
-                | View the game's 
+                | &copy; Jayen Agrawal 2022
+                | View our 
                 a(href='/stats') global stats
